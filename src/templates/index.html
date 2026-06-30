@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Heart Failure Risk Prediction</title>
+
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <!-- Attention Overlay -->
+        <div id="attentionOverlay" class="attention-overlay">
+            <div class="attention-card">
+                <div class="attention-icon">⚠️</div>
+                <h1 class="attention-title">Attention</h1>
+                <p class="attention-text">
+                    This model is for clinical decision support purposes only.
+                </p>
+
+                <div class="note-section">
+                    <span class="note-label">Please note:</span>
+                    <ul class="attention-list">
+                        <li>
+                            This tool does not replace professional medical
+                            advice
+                        </li>
+                        <li>
+                            Always consult with a qualified healthcare provider
+                        </li>
+                        <li>
+                            Results should be verified with clinical assessment
+                        </li>
+                    </ul>
+                </div>
+
+                <button id="attentionOkBtn" class="attention-btn">OK</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" class="main-content hidden">
+            <div class="container">
+                <!-- Logo Section -->
+                <div class="logo-section">
+                    <div class="logo-container">
+                        <img
+                            src="{{ url_for('static', filename='assets/icons/logo.png') }}"
+                            alt="Logo"
+                            class="logo-image"
+                        />
+                    </div>
+                </div>
+
+                <!-- Card Section -->
+                <div class="card">
+                    <h1>Heart Failure Risk Assessment</h1>
+                    <p class="subtitle">Clinical Decision Support System</p>
+
+                    <form id="heartForm">
+                        <div class="grid">
+                            <!-- Age -->
+                            <div class="field">
+                                <label>Age</label>
+                                <input type="number" id="age" required />
+                            </div>
+
+                            <!-- Sex -->
+                            <div class="field">
+                                <label>Gender</label>
+                                <select id="sex">
+                                    <option value="1">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+                            </div>
+
+                            <!-- Anaemia -->
+                            <div class="field">
+                                <label>
+                                    Anaemia
+                                    <span
+                                        class="info"
+                                        data-tooltip="Reduction in red blood cells or hemoglobin. Can reduce oxygen delivery to the body."
+                                        >?</span
+                                    >
+                                </label>
+                                <select id="anaemia">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <!-- Diabetes -->
+                            <div class="field">
+                                <label>
+                                    Diabetes
+                                    <span
+                                        class="info"
+                                        data-tooltip="Chronic condition affecting blood sugar levels and increasing cardiovascular risk."
+                                        >?</span
+                                    >
+                                </label>
+                                <select id="diabetes">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <!-- Blood Pressure -->
+                            <div class="field">
+                                <label>
+                                    High Blood Pressure
+                                    <span
+                                        class="info"
+                                        data-tooltip="Elevated arterial pressure increases heart workload and risk of heart failure."
+                                        >?</span
+                                    >
+                                </label>
+                                <select id="high_blood_pressure">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <!-- Smoking -->
+                            <div class="field">
+                                <label>
+                                    Smoking
+                                    <span
+                                        class="info"
+                                        data-tooltip="Smoking damages blood vessels and significantly increases cardiovascular risk."
+                                        >?</span
+                                    >
+                                </label>
+                                <select id="smoking">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <!-- CPK -->
+                            <div class="field">
+                                <label>
+                                    Creatinine Phosphokinase (CPK)
+                                    <span
+                                        class="info"
+                                        data-tooltip="Enzyme indicating muscle/heart damage. High levels may indicate cardiac injury."
+                                        >?</span
+                                    >
+                                </label>
+                                <input
+                                    type="number"
+                                    id="creatinine_phosphokinase"
+                                    required
+                                />
+                            </div>
+
+                            <!-- EF -->
+                            <div class="field">
+                                <label>
+                                    Ejection Fraction (%)
+                                    <span
+                                        class="info"
+                                        data-tooltip="Percentage of blood pumped per heartbeat. Normal: 50–70%. Low = heart failure risk."
+                                        >?</span
+                                    >
+                                </label>
+                                <input
+                                    type="number"
+                                    id="ejection_fraction"
+                                    required
+                                />
+                            </div>
+
+                            <!-- Platelets -->
+                            <div class="field">
+                                <label>
+                                    Platelets
+                                    <span
+                                        class="info"
+                                        data-tooltip="Cells involved in clotting. Abnormal levels may indicate blood disorders."
+                                        >?</span
+                                    >
+                                </label>
+                                <input type="number" id="platelets" required />
+                            </div>
+
+                            <!-- Creatinine -->
+                            <div class="field">
+                                <label>
+                                    Serum Creatinine
+                                    <span
+                                        class="info"
+                                        data-tooltip="Indicator of kidney function. High values suggest kidney stress or failure."
+                                        >?</span
+                                    >
+                                </label>
+                                <input
+                                    type="number"
+                                    step="0.1"
+                                    id="serum_creatinine"
+                                    required
+                                />
+                            </div>
+
+                            <!-- Sodium -->
+                            <div class="field">
+                                <label>
+                                    Serum Sodium
+                                    <span
+                                        class="info"
+                                        data-tooltip="Electrolyte balance marker. Low levels are associated with severe heart failure."
+                                        >?</span
+                                    >
+                                </label>
+                                <input
+                                    type="number"
+                                    id="serum_sodium"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <button type="submit">Assess Risk</button>
+                    </form>
+
+                    <div id="result" class="result hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>
