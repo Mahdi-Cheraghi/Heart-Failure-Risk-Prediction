@@ -26,3 +26,17 @@ X = df.drop(columns=["DEATH_EVENT"])
 y = df["DEATH_EVENT"]
 
 FEATURES = list(X.columns)
+
+models = {
+    "log_reg": Pipeline([
+        ("scaler", StandardScaler()),
+        ("model", LogisticRegression(max_iter=2000))
+    ]),
+    "rf": RandomForestClassifier(
+        n_estimators=300,
+        max_depth=5,
+        min_samples_split=5,
+        min_samples_leaf=2,
+        random_state=42
+    )
+}
