@@ -15,3 +15,7 @@ MODEL_PATH = BASE_DIR / "model" / "heart_risk_model.pkl"
 loaded = joblib.load(MODEL_PATH)
 model = loaded["model"]
 FEATURES = loaded["features"]
+
+@app.route("/")
+def home():
+    return render_template("index.html")
