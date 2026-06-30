@@ -20,3 +20,9 @@ df = df.dropna()
 # Drop the "time" column if it exists
 if "time" in df.columns:
     df = df.drop(columns=["time"])
+
+# Separate feature and target variable
+X = df.drop(columns=["DEATH_EVENT"])
+y = df["DEATH_EVENT"]
+
+FEATURES = list(X.columns)
