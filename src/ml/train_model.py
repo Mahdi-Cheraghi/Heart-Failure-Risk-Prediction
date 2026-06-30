@@ -66,3 +66,8 @@ joblib.dump({
     "model": best_model,
     "features": FEATURES
 }, MODEL_PATH)
+
+print("\n===== FINAL RESULT =====")
+print(f"Best Model: {best_name}")
+print(f"Best ROC-AUC: {best_score:.4f}")
+print("========================")
