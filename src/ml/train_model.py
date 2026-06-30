@@ -40,3 +40,19 @@ models = {
         random_state=42
     )
 }
+
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+best_model = None
+best_score = 0
+best_name = ""
+
+for name, model in models.items():
+    scores = cross_val_score(model, X, y, cv=cv, scoring="roc_auc")
+
+    mean_score = scores.mean()
+
+    if mean_score > best_score:
+        best_score = mean_score
+        best_model = model
+        best_name = name
