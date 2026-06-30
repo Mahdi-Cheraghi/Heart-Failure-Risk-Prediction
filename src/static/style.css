@@ -1,0 +1,360 @@
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: #f5f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.attention-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease;
+}
+
+.attention-overlay.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.attention-card {
+    background: white;
+    border-radius: 24px;
+    padding: 48px 40px 40px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.attention-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.attention-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #dc3545;
+    margin: 0 0 12px;
+}
+
+.attention-text {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.note-section {
+    text-align: left;
+    margin: 20px 0 30px;
+    background: #f8f9fa;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border-left: 4px solid #2d6cdf;
+}
+
+.note-label {
+    display: block;
+    font-weight: 600;
+    color: #2d6cdf;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.attention-list {
+    padding: 0;
+    margin: 0;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.attention-list li {
+    list-style: none;
+    padding-left: 28px;
+    position: relative;
+    margin-bottom: 6px;
+}
+
+.attention-list li::before {
+    content: "•";
+    color: #2d6cdf;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    left: 4px;
+    top: -2px;
+}
+
+.attention-list li:last-child {
+    margin-bottom: 0;
+}
+
+.attention-btn {
+    background: #2d6cdf;
+    color: white;
+    border: none;
+    padding: 14px 60px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(45, 108, 223, 0.3);
+}
+
+.attention-btn:hover {
+    background: #1f5ed6;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45, 108, 223, 0.4);
+}
+
+.main-content {
+    display: block;
+}
+
+.main-content.hidden {
+    display: none;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0 40px;
+}
+
+.logo-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 20px;
+    background: white;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
+}
+
+/* Form */
+.card {
+    width: 460px;
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+h1 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* Form  */
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-size: 13px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input,
+select {
+    width: 100%;
+    height: 40px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #2d6cdf;
+    box-shadow: 0 0 0 3px rgba(45, 108, 223, 0.1);
+}
+
+button[type="submit"] {
+    margin-top: 18px;
+    width: 100%;
+    height: 42px;
+    border: none;
+    border-radius: 10px;
+    background: #2d6cdf;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: #1f5ed6;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(45, 108, 223, 0.25);
+}
+
+/* Info Tooltip  */
+.info {
+    margin-left: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #2d6cdf;
+    position: relative;
+}
+
+.info:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 0;
+    top: 22px;
+    width: 220px;
+    background: #111;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    z-index: 100;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    font-weight: 400;
+}
+
+/* Result Box  */
+.result {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.result.hidden {
+    display: none;
+}
+
+@media (max-width: 520px) {
+    .card {
+        width: 92%;
+        padding: 20px;
+    }
+
+    .attention-card {
+        padding: 32px 24px 28px;
+        width: 92%;
+    }
+
+    .attention-title {
+        font-size: 26px;
+    }
+
+    .logo-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .attention-list {
+        padding: 0 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        padding: 16px;
+    }
+
+    input,
+    select {
+        height: 36px;
+        font-size: 12px;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    .info:hover::after {
+        width: 160px;
+        left: -20px;
+    }
+}
