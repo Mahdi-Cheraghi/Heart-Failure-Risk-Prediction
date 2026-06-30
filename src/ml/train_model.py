@@ -41,6 +41,7 @@ models = {
     )
 }
 
+# Setup cross-validation
 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
 best_model = None
@@ -56,3 +57,12 @@ for name, model in models.items():
         best_score = mean_score
         best_model = model
         best_name = name
+
+# Fit the best model on the entire dataset
+best_model.fit(X, y)
+
+# Save the best model
+joblib.dump({
+    "model": best_model,
+    "features": FEATURES
+}, MODEL_PATH)
