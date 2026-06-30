@@ -8,6 +8,15 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 
+# Set the base directory and paths
 BASE_DIR = Path(__file__).resolve().parents[2]
 DATA_PATH = BASE_DIR / "data" / "heart_failure_clinical_records_dataset.csv"
 MODEL_PATH = BASE_DIR / "model" / "heart_risk_model.pkl"
+
+df = pd.read_csv(DATA_PATH)
+# Drop rows with missing values
+df = df.dropna()
+
+# Drop the "time" column if it exists
+if "time" in df.columns:
+    df = df.drop(columns=["time"])
