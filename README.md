@@ -108,7 +108,7 @@ pip install -r requirements.txt
 ## Train the Model
 
 ```bash
-python src/train_model.py
+python src/ml/train_model.py
 ```
 
 The trained model will be saved to:
