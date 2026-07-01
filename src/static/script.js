@@ -55,4 +55,60 @@ document
             ),
             serum_sodium: Number(document.getElementById("serum_sodium").value),
         };
+
+        try {
+            // Send data to the server
+            const response = await fetch("/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (result.error) {
+                resultBox.innerHTML = `<div style="color:red;">${result.error}</div>`;
+                return;
+            }
+
+            let color = "#28a745";
+            let icon = "🟢";
+            let message = "Low Risk - Continue routine care";
+
+            // risk levels
+            if (result.risk === "Moderate") {
+                color = "#ffc107";
+                icon = "🟡";
+                message = "Moderate Risk - Recommend follow-up and monitoring";
+            }
+
+            if (result.risk === "High") {
+                color = "#dc3545";
+                icon = "🔴";
+                message =
+                    "High Risk - Immediate cardiology consultation advised";
+            }
+
+            resultBox.innerHTML = `
+                <div style="
+                    padding:20px;
+                    border-radius:15px;
+                    background:${color};
+                    color:white;
+                    text-align:center;
+                    margin-top:20px;
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                ">
+                    <div style="font-size:40px;">${icon}</div>
+                    <h2>${result.risk} Risk</h2>
+                    <h1>${(result.probability * 100).toFixed(1)}%</h1>
+                    <p style="margin-top:10px;">${message}</p>
+                </div>
+            `;
+        } catch (err) {
+            console.error(err);
+            resultBox.innerHTML = `<div style="color:red;">Server error</div>`;
+        }
     });
