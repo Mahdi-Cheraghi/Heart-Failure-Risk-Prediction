@@ -74,19 +74,16 @@ document
             }
 
             let color = "#28a745";
-            let icon = "🟢";
             let message = "Low Risk - Continue routine care";
 
             // risk levels
             if (result.risk === "Moderate") {
                 color = "#ffc107";
-                icon = "🟡";
                 message = "Moderate Risk - Recommend follow-up and monitoring";
             }
 
             if (result.risk === "High") {
                 color = "#dc3545";
-                icon = "🔴";
                 message =
                     "High Risk - Immediate cardiology consultation advised";
             }
@@ -101,7 +98,6 @@ document
                     margin-top:20px;
                     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
                 ">
-                    <div style="font-size:40px;">${icon}</div>
                     <h2>${result.risk} Risk</h2>
                     <h1>${(result.probability * 100).toFixed(1)}%</h1>
                     <p style="margin-top:10px;">${message}</p>
